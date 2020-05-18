@@ -14,7 +14,7 @@ const Button = (props: IProps) => {
 
   return (
     <button
-      className={`button focusable ${className}`}
+      className={`button focusable ${className ?? ""}`}
       onFocus={() => onFocus()}
       onClick={() => onClick()}
       tabIndex={0}

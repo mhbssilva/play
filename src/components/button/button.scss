@@ -14,15 +14,15 @@
 
   &.selected {
     label {
-      color: rgba(255, 255, 255, 1);
+      color: #cccccc;
     }
     svg path {
-      fill: rgba(255, 255, 255, 1);
+      fill: #cccccc;
     }
   }
 
   &:focus {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #cccccc;
     label {
       color: rgba(0, 0, 0, 1);
     }

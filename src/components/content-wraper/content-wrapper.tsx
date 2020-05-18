@@ -3,23 +3,28 @@ import defaultImage from "../../assets/images/bbb-featured-content-bg.jpg";
 import FeaturedContent from "../featured-content/featured-content";
 import "./content-wrapper.scss";
 import ContentWrapperBanner from "./content-wrapper-banner";
+import sampleContentData from "../../data/sample-content";
+import IContentData from "../../shared/interfaces/content-data";
 
 interface IProps {
-  contentImage: string;
-  setContentImage: Function;
+  selectedContentData: IContentData;
+  setSelectedContentData: Function;
+  selectedContentDataIndex: number;
+  setSelectedContentDataIndex: Function;
 }
 
-const ContentWrapper = (props: IProps) => {
-  const { contentImage, setContentImage } = props;
+const data = sampleContentData.contents[0];
 
-  useEffect(() => {
-    setContentImage(defaultImage);
-  }, [setContentImage]);
+const ContentWrapper = (props: IProps) => {
+  const { selectedContentData, selectedContentDataIndex } = props;
 
   return (
     <section className="content-wrapper">
-      <ContentWrapperBanner contentImage={contentImage} />
-      <FeaturedContent />
+      <ContentWrapperBanner
+        contentData={selectedContentData}
+        contentDataIndex={selectedContentDataIndex}
+      />
+      <FeaturedContent contentData={data} />
     </section>
   );
 };

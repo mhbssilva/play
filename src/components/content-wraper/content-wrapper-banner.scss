@@ -1,10 +1,51 @@
 .content-wrapper-banner {
+  justify-content: center;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 80vh;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
   top: 0;
   width: 100vw;
   z-index: 100;
+
+  div.details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8rem;
+    width: 50vw;
+    max-width: 28rem;
+  }
+
+  div.actions {
+    display: flex;
+  }
+
+  img.programLogo {
+    width: 12rem;
+  }
+
+  h1 {
+    color: #cccccc;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  button {
+    border-width: 2px;
+    border-radius: 3px;
+    color: #cccccc;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-right: 2rem;
+    padding: 1rem 2rem;
+
+    svg {
+      margin-right: 1rem;
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+  }
 }

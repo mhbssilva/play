@@ -1,4 +1,4 @@
-import IContentDataList from "../shared/interfaces/content-data-list";
+import IContentDataList from "../shared/interfaces/content-list-data";
 import bbbLogo from "../assets/images/bbb-logo.png";
 import bbbFeaturedContentBg from "../assets/images/bbb-featured-content-bg.jpg";
 import bbbTrailBg from "../assets/images/bbb-trail-bg.jpg";
@@ -9,19 +9,21 @@ import bbbThumb4 from "../assets/images/bbb-image-4.jpg";
 import bbbThumb5 from "../assets/images/bbb-image-5.jpg";
 import bbbThumb6 from "../assets/images/bbb-image-6.jpg";
 
-const sampleData: IContentDataList = {
+const sampleContentData: IContentDataList = {
   contents: [
     {
       type: "feature",
       programLogoImage: bbbLogo,
-      data: {
-        title: "Acompanhe 24h ao vivo a casa mais vigiada do Brasil",
-        backgroundImage: bbbFeaturedContentBg,
-        actions: {
-          play: true,
-          more: true,
+      data: [
+        {
+          title: "Acompanhe 24h ao vivo a casa mais vigiada do Brasil",
+          backgroundImage: bbbFeaturedContentBg,
+          actions: {
+            play: true,
+            more: true,
+          },
         },
-      },
+      ],
     },
     {
       type: "trail",
@@ -64,4 +66,4 @@ const sampleData: IContentDataList = {
   ],
 };
 
-export default sampleData;
+export default sampleContentData;
