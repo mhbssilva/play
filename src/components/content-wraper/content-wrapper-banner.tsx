@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import IContentData from "../../shared/interfaces/content-data";
 import Button from "../button/button";
 import PlayIcon from "../icon/play";
@@ -11,6 +11,9 @@ interface IProps {
 
 const ContentWrapperBanner = (props: IProps) => {
   const { contentData, contentDataIndex } = props;
+  const [focusedItem, setFocusedItem] = useState(
+    null as "play" | "more" | null
+  );
 
   const getContentIndex = () => {
     return contentData.type === "feature" ? 0 : contentDataIndex;
@@ -20,8 +23,8 @@ const ContentWrapperBanner = (props: IProps) => {
     return contentData.data[getContentIndex()].backgroundImage;
   };
 
-  const getCategoryName = () => {
-    return contentData.categoryName ?? null;
+  const getProgramName = () => {
+    return contentData.programName ?? null;
   };
 
   const getProgramLogoImage = () => {
@@ -33,11 +36,17 @@ const ContentWrapperBanner = (props: IProps) => {
   };
 
   const shouldDisplayMoreAction = () => {
-    return contentData.data[getContentIndex()].actions!.more;
+    return (
+      contentData.data[getContentIndex()].actions &&
+      contentData.data[getContentIndex()].actions!.more
+    );
   };
 
   const shouldDisplayPlayAction = () => {
-    return contentData.data[getContentIndex()].actions!.play;
+    return (
+      contentData.data[getContentIndex()].actions &&
+      contentData.data[getContentIndex()].actions!.play
+    );
   };
 
   return (
@@ -57,25 +66,33 @@ const ContentWrapperBanner = (props: IProps) => {
             src={getProgramLogoImage()!}
           />
         ) : null}
-        {getCategoryName() ? <h2>{getCategoryName()!}</h2> : null}
+        {getProgramName() ? <h2>{getProgramName()!}</h2> : null}
         <h1>{getTitle()}</h1>
         {shouldDisplayMoreAction() || shouldDisplayPlayAction() ? (
           <div className="actions">
             {shouldDisplayPlayAction() ? (
               <Button
-                className="selected"
+                className={`selected ${
+                  focusedItem === "play" ? "focused" : null
+                }`}
                 icon={<PlayIcon />}
                 label="Assista"
                 onClick={() => {}}
-                onFocus={() => {}}
+                onFocus={() => {
+                  setFocusedItem("play");
+                }}
               />
             ) : null}
             {shouldDisplayMoreAction() ? (
               <Button
-                className="selected"
+                className={`selected ${
+                  focusedItem === "more" ? "focused" : null
+                }`}
                 label="Veja mais"
                 onClick={() => {}}
-                onFocus={() => {}}
+                onFocus={() => {
+                  setFocusedItem("more");
+                }}
               />
             ) : null}
           </div>

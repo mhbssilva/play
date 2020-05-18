@@ -2,7 +2,7 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0);
   display: flex;
-  font-family: "Open Sans";
+  transition: all 0.1s ease-in;
 
   label {
     color: rgba(255, 255, 255, 0.6);
@@ -22,7 +22,7 @@
   }
 
   &:focus {
-    background-color: #cccccc;
+    background-color: #fff;
     label {
       color: rgba(0, 0, 0, 1);
     }

@@ -24,6 +24,7 @@ const App = () => {
         onSelectItem={setSelectedNavigationItem}
       ></LeftNavigation>
       <ContentWrapper
+        contentList={sampleContentData}
         selectedContentData={selectedContentData}
         setSelectedContentData={setSelectedContentData}
         selectedContentDataIndex={selectedContentDataIndex}

@@ -11,7 +11,6 @@ interface IProps {
 function FeaturedContent(props: IProps) {
   const {
     data: IContentItemData,
-    categoryName,
     programName,
     programLogoImage,
     type,

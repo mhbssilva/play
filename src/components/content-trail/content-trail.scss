@@ -1,0 +1,21 @@
+.content-trail-wrapper {
+  margin-top: -4rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem 0 8rem;
+  max-width: 100vw;
+
+  &.selected {
+    margin-top: -10rem;
+  }
+
+  h3 {
+    color: #cccccc;
+  }
+
+  div.content-trail-items-wrapper {
+    display: flex;
+    padding: 1rem 0 2rem 0;
+    overflow-x: scroll;
+  }
+}
