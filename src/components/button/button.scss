@@ -1,0 +1,33 @@
+.button {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  font-family: "Open Sans";
+
+  label {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  svg path {
+    fill: rgba(255, 255, 255, 0.6);
+  }
+
+  &.selected {
+    label {
+      color: rgba(255, 255, 255, 1);
+    }
+    svg path {
+      fill: rgba(255, 255, 255, 1);
+    }
+  }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 1);
+    label {
+      color: rgba(0, 0, 0, 1);
+    }
+    svg path {
+      fill: rgba(0, 0, 0, 1);
+    }
+  }
+}
