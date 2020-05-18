@@ -5,10 +5,11 @@
 }
 
 .App {
-  text-align: center;
+  background: #000;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .App-logo {

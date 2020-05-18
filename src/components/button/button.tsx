@@ -2,7 +2,7 @@ import React from "react";
 import "./button.scss";
 
 interface IProps {
-  className: string;
+  className?: string;
   icon?: any;
   label?: string;
   onClick: Function;

@@ -1,0 +1,34 @@
+.featured-content-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+  height: 70vh;
+  width: 100vw;
+  background: red;
+  position: relative;
+  padding: 2rem;
+  z-index: 500;
+
+  h1 {
+    display: flex;
+    flex: 1;
+  }
+  button {
+    flex: 1;
+    border: none;
+    height: 4rem;
+
+    label {
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+
+    svg {
+      margin-right: 1.4rem;
+      width: 1.4rem;
+      height: 1rem;
+    }
+  }
+}

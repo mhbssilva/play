@@ -1,9 +1,13 @@
 .left-navigation-wrapper {
   align-items: center;
-  background: #060406;
+  background: rgba(0, 0, 0, 0.85);
+  border-right: 1px rgba(255, 255, 255, 0.1) solid;
   display: flex;
   height: 100vh;
+  left: 0;
   position: fixed;
+  top: 0;
+  z-index: 1001;
 
   &.hidden {
     button {

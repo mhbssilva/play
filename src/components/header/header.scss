@@ -1,0 +1,18 @@
+.app-header {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 8rem;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: 1000;
+
+  svg {
+    display: inline-block;
+    flex: 1;
+    width: 12rem;
+    margin: 1rem 2rem;
+  }
+}
