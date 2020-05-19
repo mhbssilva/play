@@ -1,3 +1,5 @@
+@import "../../shared/config/theme.scss";
+
 .content-trail-wrapper {
   margin-top: -4rem;
   display: flex;
@@ -10,7 +12,7 @@
   }
 
   h3 {
-    color: #cccccc;
+    color: color(gray);
   }
 
   div.content-trail-items-wrapper {

@@ -1,7 +1,9 @@
+@import "../../shared/config/theme.scss";
+
 .left-navigation-wrapper {
   align-items: center;
-  background: rgba(0, 0, 0, 0.85);
-  border-right: 1px rgba(255, 255, 255, 0.1) solid;
+  background: color(black85Opacity);
+  border-right: 1px color(white01Opacity) solid;
   display: flex;
   height: 100vh;
   left: 0;

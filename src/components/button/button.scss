@@ -1,3 +1,5 @@
+@import "../../shared/config/theme.scss";
+
 .button {
   align-items: center;
   background-color: rgba(0, 0, 0, 0);
@@ -5,24 +7,24 @@
   transition: all 0.1s ease-in;
 
   label {
-    color: rgba(255, 255, 255, 0.6);
+    color: color(white60Opacity);
   }
 
   svg path {
-    fill: rgba(255, 255, 255, 0.6);
+    fill: color(white60Opacity);
   }
 
   &.selected {
     label {
-      color: #cccccc;
+      color: color(gray);
     }
     svg path {
-      fill: #cccccc;
+      fill: color(gray);
     }
   }
 
   &:focus {
-    background-color: #fff;
+    background-color: color(fullWhite);
     label {
       color: rgba(0, 0, 0, 1);
     }

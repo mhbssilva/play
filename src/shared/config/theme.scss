@@ -1,0 +1,13 @@
+$colors: (
+  gray: #ccc,
+  white01Opacity: rgba(255, 255, 255, 0.1),
+  white60Opacity: rgba(255, 255, 255, 0.6),
+  fullWhite: #fff,
+  black80Opacity: rgba(0, 0, 0, 0.8),
+  black85Opacity: rgba(0, 0, 0, 0.85),
+  fullBlack: #000,
+);
+
+@function color($colorName) {
+  @return map-get($colors, $colorName);
+}

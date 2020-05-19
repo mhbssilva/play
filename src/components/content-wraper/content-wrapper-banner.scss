@@ -1,3 +1,5 @@
+@import "../../shared/config/theme.scss";
+
 .content-wrapper-banner {
   background-position: center center;
   background-repeat: no-repeat;
@@ -29,7 +31,7 @@
   }
 
   h1 {
-    color: #cccccc;
+    color: color(gray);
     font-weight: normal;
     font-size: 1.5rem;
     line-height: 2rem;
@@ -37,7 +39,7 @@
   }
 
   h2 {
-    color: #cccccc;
+    color: color(gray);
     font-weight: 700;
     font-size: 1.2rem;
     line-height: 1.5rem;
@@ -47,8 +49,8 @@
   button {
     border-width: 2px;
     border-radius: 3px;
-    border-color: #fff;
-    color: #fff;
+    border-color: color(fullWhite);
+    color: color(fullWhite);
     font-weight: bold;
     font-size: 1rem;
     line-height: 1.2rem;
