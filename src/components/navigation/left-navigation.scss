@@ -9,37 +9,39 @@
   top: 0;
   z-index: 1001;
 
-  &.hidden {
-    button {
-      padding: 0 2rem;
-
-      label {
-        display: none;
-      }
-      svg {
-        margin-right: 0;
-      }
-    }
+  nav {
+    display: flex;
+    flex-direction: column;
   }
 
   button {
     border: none;
     height: 4rem;
-    padding: 0 4rem 0 2rem;
+    padding: 0 2rem;
 
     label {
       font-size: 1.2rem;
       font-weight: 400;
+      display: none;
     }
 
     svg {
-      margin-right: 1.4rem;
+      margin-right: 0;
       width: 1.4rem;
     }
   }
 
-  nav {
-    display: flex;
-    flex-direction: column;
+  &:focus-within {
+    button {
+      padding: 0 4rem 0 2rem;
+
+      label {
+        display: flex;
+      }
+
+      svg {
+        margin-right: 1.4rem;
+      }
+    }
   }
 }

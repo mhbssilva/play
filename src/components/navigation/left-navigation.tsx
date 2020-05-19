@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import LeftNavigationItemType from "../../shared/types/left-navigation-item";
+import React from "react";
+import ActionHelper from "../../shared/helpers/action";
+import KeyHelper from "../../shared/helpers/key-helper";
 import Button from "../button/button";
 import AccountIcon from "../icon/account";
 import CategoriesIcon from "../icon/categories";
@@ -9,76 +10,77 @@ import SearchIcon from "../icon/search";
 import "./left-navigation.scss";
 
 interface IProps {
-  selectedItem: LeftNavigationItemType;
-  onSelectItem: Function;
+  selectedItem: number;
+  setFocusOnFeature: Function;
+  setSelectedItem: Function;
 }
 
 const LeftNavigation = (props: IProps) => {
-  const { selectedItem, onSelectItem } = props;
-  const [focusedItem, setFocusedItem] = useState(
-    null as LeftNavigationItemType | null
-  );
+  const { selectedItem, setFocusOnFeature, setSelectedItem } = props;
 
   const menuItems = [
     {
       icon: <SearchIcon />,
       label: "Busca",
-      type: "search" as LeftNavigationItemType,
     },
     {
       icon: <HomeIcon />,
       label: "Início",
-      type: "home" as LeftNavigationItemType,
     },
     {
       icon: <NowIcon />,
       label: "Agora na Globo",
-      type: "now" as LeftNavigationItemType,
     },
     {
       icon: <CategoriesIcon />,
       label: "Categorias",
-      type: "categories" as LeftNavigationItemType,
     },
     {
       icon: <AccountIcon />,
       label: "Minha Conta",
-      type: "account" as LeftNavigationItemType,
     },
   ];
 
-  const getItemClassNames = (item: LeftNavigationItemType) => {
-    const itemClassNames = [
-      isItemFocused(item) ? "focused" : "",
-      isItemSelected(item) ? "selected" : "",
-    ];
+  const isItemSelected = (index: number) => index === selectedItem;
 
-    return itemClassNames.join(" ");
+  const onPressUpKey = () => {
+    if (selectedItem > 0) {
+      ActionHelper.setFocus(`left-navigation-menu-btn-${selectedItem - 1}`);
+    }
   };
 
-  const isItemFocused = (item: LeftNavigationItemType) => {
-    return item === focusedItem;
+  const onPressDownKey = () => {
+    if (selectedItem < menuItems.length) {
+      ActionHelper.setFocus(`left-navigation-menu-btn-${selectedItem + 1}`);
+    }
   };
 
-  const isItemSelected = (item: LeftNavigationItemType) => {
-    return item === selectedItem;
+  const onPressLeftKey = () => {};
+  const onPressRightKey = () => {
+    setFocusOnFeature();
   };
 
-  const onItemClick = (item: LeftNavigationItemType) => {
-    onSelectItem(item);
-    console.log("clicou", { item });
+  const onKeyPress = (e: KeyboardEvent) => {
+    KeyHelper.setKeyCallback(e, {
+      upCallback: onPressUpKey,
+      downCallback: onPressDownKey,
+      leftCallback: onPressLeftKey,
+      rightCallback: onPressRightKey,
+    });
   };
 
   return (
-    <div className="left-navigation-wrapper hidden">
+    <div className="left-navigation-wrapper">
       <nav>
-        {menuItems.map((item) => (
+        {menuItems.map((item, index) => (
           <Button
-            className={getItemClassNames(item.type)}
+            id={`left-navigation-menu-btn-${index}`}
+            key={`left-navigation-menu-btn-${index}`}
+            className={isItemSelected(index) ? "selected" : ""}
             icon={item.icon}
             label={item.label}
-            onClick={() => onItemClick(item.type)}
-            onFocus={() => setFocusedItem(item.type)}
+            onFocus={() => setSelectedItem(index)}
+            onKeyPress={onKeyPress}
           />
         ))}
       </nav>

@@ -1,9 +1,10 @@
 import React from "react";
+import KeyHelper from "../../shared/helpers/key-helper";
 import IContentData from "../../shared/interfaces/content-data";
 import Button from "../button/button";
 import PlayIcon from "../icon/play";
 import "./content-wrapper-banner.scss";
-import KeyHelper from "../../shared/helpers/key-helper";
+import ActionHelper from "../../shared/helpers/action";
 
 interface IProps {
   contentData: IContentData;
@@ -34,14 +35,14 @@ const ContentWrapperBanner = (props: IProps) => {
     return contentData.data[getContentIndex()].title;
   };
 
-  const shouldDisplayMoreAction = () => {
+  const showMoreBtn = () => {
     return (
       contentData.data[getContentIndex()].actions &&
       contentData.data[getContentIndex()].actions!.more
     );
   };
 
-  const shouldDisplayPlayAction = () => {
+  const showPlayBtn = () => {
     return (
       contentData.data[getContentIndex()].actions &&
       contentData.data[getContentIndex()].actions!.play
@@ -50,7 +51,7 @@ const ContentWrapperBanner = (props: IProps) => {
 
   const onPressUpKey = () => {};
   const onPressDownKey = () => {
-    document.getElementById("trail-content-card-0")?.focus();
+    ActionHelper.setFocus("trail-content-card-0");
   };
 
   const playBtnOnKeyPress = (e: KeyboardEvent) => {
@@ -58,9 +59,7 @@ const ContentWrapperBanner = (props: IProps) => {
       upCallback: onPressUpKey,
       downCallback: onPressDownKey,
       leftCallback: props.setFocusOnNavigation(),
-      rightCallback: () => {
-        document.getElementById("btn-more-action")?.focus();
-      },
+      rightCallback: () => ActionHelper.setFocus("btn-more-action"),
     });
   };
 
@@ -68,9 +67,7 @@ const ContentWrapperBanner = (props: IProps) => {
     KeyHelper.setKeyCallback(e, {
       upCallback: onPressUpKey,
       downCallback: onPressDownKey,
-      leftCallback: () => {
-        document.getElementById("btn-play-action")?.focus();
-      },
+      leftCallback: () => ActionHelper.setFocus("btn-play-action"),
       rightCallback: () => {},
     });
   };
@@ -94,9 +91,9 @@ const ContentWrapperBanner = (props: IProps) => {
         ) : null}
         {getProgramName() ? <h2>{getProgramName()!}</h2> : null}
         <h1>{getTitle()}</h1>
-        {shouldDisplayMoreAction() || shouldDisplayPlayAction() ? (
+        {showMoreBtn() || showPlayBtn() ? (
           <div className="actions">
-            {shouldDisplayPlayAction() ? (
+            {showPlayBtn() ? (
               <Button
                 className="selected"
                 icon={<PlayIcon />}
@@ -105,7 +102,7 @@ const ContentWrapperBanner = (props: IProps) => {
                 onKeyPress={playBtnOnKeyPress}
               />
             ) : null}
-            {shouldDisplayMoreAction() ? (
+            {showMoreBtn() ? (
               <Button
                 className="selected"
                 id={`btn-more-action`}

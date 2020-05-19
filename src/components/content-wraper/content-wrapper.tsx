@@ -7,6 +7,8 @@ import ContentTrail from "../content-trail/content-trail";
 
 interface IProps {
   contentList: IContentListData;
+  setFocusOnFeature: Function;
+  setFocusOnNavigation: Function;
   selectedContentData: IContentData;
   setSelectedContentData: Function;
   selectedContentDataIndex: number;
@@ -16,24 +18,13 @@ interface IProps {
 const ContentWrapper = (props: IProps) => {
   const {
     contentList,
+    setFocusOnFeature,
+    setFocusOnNavigation,
     selectedContentData,
     setSelectedContentData,
     selectedContentDataIndex,
     setSelectedContentDataIndex,
   } = props;
-
-  const setFocusOnFeature = () => {
-    const featureContent = contentList.contents
-      .filter((content: IContentData) => content.type === "feature")
-      .shift();
-
-    setSelectedContentData(featureContent);
-    setTimeout(() => {
-      document.getElementById("btn-play-action")?.focus();
-    }, 1);
-  };
-
-  const setFocusOnNavigation = () => {};
 
   return (
     <section className="content-wrapper">
@@ -43,9 +34,10 @@ const ContentWrapper = (props: IProps) => {
         setFocusOnNavigation={setFocusOnNavigation}
       />
       {contentList.contents.length > 0
-        ? contentList.contents.map((contentData: IContentData) =>
+        ? contentList.contents.map((contentData: IContentData, index: number) =>
             contentData.type === "trail" ? (
               <ContentTrail
+                key={`content-trail-${index}`}
                 contentData={contentData}
                 setFocusOnFeature={setFocusOnFeature}
                 setFocusOnNavigation={setFocusOnNavigation}

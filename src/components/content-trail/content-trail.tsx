@@ -1,4 +1,5 @@
 import React from "react";
+import ActionHelper from "../../shared/helpers/action";
 import KeyHelper from "../../shared/helpers/key-helper";
 import IContentData from "../../shared/interfaces/content-data";
 import IContentItemData from "../../shared/interfaces/content-item-data";
@@ -34,17 +35,17 @@ function ContentTrail(props: IProps) {
     if (selectedContentDataIndex === 0) {
       props.setFocusOnNavigation();
     } else {
-      document
-        .getElementById(`trail-content-card-${selectedContentDataIndex - 1}`)
-        ?.focus();
+      ActionHelper.setFocus(
+        `trail-content-card-${selectedContentDataIndex - 1}`
+      );
     }
   };
 
   const onPressRightKey = () => {
     if (selectedContentDataIndex < contentData.data.length) {
-      document
-        .getElementById(`trail-content-card-${selectedContentDataIndex + 1}`)
-        ?.focus();
+      ActionHelper.setFocus(
+        `trail-content-card-${selectedContentDataIndex + 1}`
+      );
     }
   };
 
@@ -79,6 +80,7 @@ function ContentTrail(props: IProps) {
             return (
               <ContentCard
                 id={`trail-content-card-${index}`}
+                key={`trail-content-card-${index}`}
                 onKeyPress={onKeyPress}
                 onFocus={() => {
                   setSelectedContentData(contentData);
