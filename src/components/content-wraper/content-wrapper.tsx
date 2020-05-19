@@ -30,7 +30,7 @@ const ContentWrapper = (props: IProps) => {
     setSelectedContentData(featureContent);
     setTimeout(() => {
       document.getElementById("btn-play-action")?.focus();
-    }, 10);
+    }, 1);
   };
 
   const setFocusOnNavigation = () => {};

@@ -9,11 +9,10 @@ interface IProps {
   contentData: IContentData;
   selectedContentData: IContentData;
   selectedContentDataIndex: number;
-
-  setSelectedContentData: Function;
-  setSelectedContentDataIndex: Function;
   setFocusOnFeature: Function;
   setFocusOnNavigation: Function;
+  setSelectedContentData: Function;
+  setSelectedContentDataIndex: Function;
 }
 
 function ContentTrail(props: IProps) {
@@ -58,6 +57,15 @@ function ContentTrail(props: IProps) {
     });
   };
 
+  const slideToContentCard = (elementId: string) => {
+    const componentElement = document.getElementById(elementId)!;
+    const width = componentElement.offsetWidth;
+    const leftPosition = componentElement.offsetLeft;
+    const parentElement = componentElement.parentElement;
+
+    parentElement?.scrollTo({ left: leftPosition - width / 1.8 });
+  };
+
   return (
     <section
       className={`content-trail-wrapper ${
@@ -75,6 +83,7 @@ function ContentTrail(props: IProps) {
                 onFocus={() => {
                   setSelectedContentData(contentData);
                   setSelectedContentDataIndex(index);
+                  slideToContentCard(`trail-content-card-${index}`);
                 }}
                 contentItemData={contentItemData}
               />
