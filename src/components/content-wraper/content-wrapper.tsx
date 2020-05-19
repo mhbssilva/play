@@ -22,17 +22,33 @@ const ContentWrapper = (props: IProps) => {
     setSelectedContentDataIndex,
   } = props;
 
+  const setFocusOnFeature = () => {
+    const featureContent = contentList.contents
+      .filter((content: IContentData) => content.type === "feature")
+      .shift();
+
+    setSelectedContentData(featureContent);
+    setTimeout(() => {
+      document.getElementById("btn-play-action")?.focus();
+    }, 10);
+  };
+
+  const setFocusOnNavigation = () => {};
+
   return (
     <section className="content-wrapper">
       <ContentWrapperBanner
         contentData={selectedContentData}
         contentDataIndex={selectedContentDataIndex}
+        setFocusOnNavigation={setFocusOnNavigation}
       />
       {contentList.contents.length > 0
         ? contentList.contents.map((contentData: IContentData) =>
             contentData.type === "trail" ? (
               <ContentTrail
                 contentData={contentData}
+                setFocusOnFeature={setFocusOnFeature}
+                setFocusOnNavigation={setFocusOnNavigation}
                 selectedContentData={selectedContentData}
                 setSelectedContentData={setSelectedContentData}
                 setSelectedContentDataIndex={setSelectedContentDataIndex}

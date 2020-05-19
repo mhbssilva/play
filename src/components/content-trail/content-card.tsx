@@ -1,26 +1,28 @@
 import React from "react";
-import "./content-card.scss";
-import IContentData from "../../shared/interfaces/content-data";
 import IContentItemData from "../../shared/interfaces/content-item-data";
 import PlayIcon from "../icon/play";
+import "./content-card.scss";
 
 interface IProps {
-  isFocused: boolean;
+  id: string;
+  onKeyPress: Function;
   onFocus: Function;
   contentItemData: IContentItemData;
-  selectedContentData: IContentData;
-  selectedContentDataIndex: number;
 }
 
 function ContentCard(props: IProps) {
-  const { contentItemData, isFocused, onFocus } = props;
+  const { contentItemData, onFocus, id, onKeyPress } = props;
+
   return (
     <figure
-      className={`content-card ${isFocused ? "focused" : null}`}
+      id={id}
+      key={id}
+      className="content-card"
       tabIndex={0}
       onFocus={() => {
         onFocus();
       }}
+      onKeyDown={(e: any) => onKeyPress(e as KeyboardEvent)}
     >
       <img src={contentItemData.thumbImage} alt={contentItemData.title} />
       <PlayIcon />

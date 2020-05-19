@@ -53,7 +53,7 @@
     text-transform: uppercase;
   }
 
-  &.focused {
+  &:focus {
     border-color: #fff;
 
     svg {

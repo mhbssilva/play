@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import IContentData from "../../shared/interfaces/content-data";
 import Button from "../button/button";
 import PlayIcon from "../icon/play";
 import "./content-wrapper-banner.scss";
+import KeyHelper from "../../shared/helpers/key-helper";
 
 interface IProps {
   contentData: IContentData;
   contentDataIndex: number;
+  setFocusOnNavigation: Function;
 }
 
 const ContentWrapperBanner = (props: IProps) => {
   const { contentData, contentDataIndex } = props;
-  const [focusedItem, setFocusedItem] = useState(
-    null as "play" | "more" | null
-  );
 
   const getContentIndex = () => {
     return contentData.type === "feature" ? 0 : contentDataIndex;
@@ -49,6 +48,33 @@ const ContentWrapperBanner = (props: IProps) => {
     );
   };
 
+  const onPressUpKey = () => {};
+  const onPressDownKey = () => {
+    document.getElementById("trail-content-card-0")?.focus();
+  };
+
+  const playBtnOnKeyPress = (e: KeyboardEvent) => {
+    KeyHelper.setKeyCallback(e, {
+      upCallback: onPressUpKey,
+      downCallback: onPressDownKey,
+      leftCallback: props.setFocusOnNavigation(),
+      rightCallback: () => {
+        document.getElementById("btn-more-action")?.focus();
+      },
+    });
+  };
+
+  const moreBtnOnKeyPress = (e: KeyboardEvent) => {
+    KeyHelper.setKeyCallback(e, {
+      upCallback: onPressUpKey,
+      downCallback: onPressDownKey,
+      leftCallback: () => {
+        document.getElementById("btn-play-action")?.focus();
+      },
+      rightCallback: () => {},
+    });
+  };
+
   return (
     <section
       className={`content-wrapper-banner ${contentData.type}`}
@@ -72,27 +98,19 @@ const ContentWrapperBanner = (props: IProps) => {
           <div className="actions">
             {shouldDisplayPlayAction() ? (
               <Button
-                className={`selected ${
-                  focusedItem === "play" ? "focused" : null
-                }`}
+                className="selected"
                 icon={<PlayIcon />}
+                id={`btn-play-action`}
                 label="Assista"
-                onClick={() => {}}
-                onFocus={() => {
-                  setFocusedItem("play");
-                }}
+                onKeyPress={playBtnOnKeyPress}
               />
             ) : null}
             {shouldDisplayMoreAction() ? (
               <Button
-                className={`selected ${
-                  focusedItem === "more" ? "focused" : null
-                }`}
+                className="selected"
+                id={`btn-more-action`}
                 label="Veja mais"
-                onClick={() => {}}
-                onFocus={() => {
-                  setFocusedItem("more");
-                }}
+                onKeyPress={moreBtnOnKeyPress}
               />
             ) : null}
           </div>
