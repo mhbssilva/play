@@ -1,4 +1,5 @@
 import React from "react";
+import ContentType from "../../shared/enums/content-type";
 import ActionHelper from "../../shared/helpers/action";
 import KeyHelper from "../../shared/helpers/key-helper";
 import IContentData from "../../shared/interfaces/content-data";
@@ -14,6 +15,7 @@ interface IProps {
   setFocusOnNavigation: Function;
   setSelectedContentData: Function;
   setSelectedContentDataIndex: Function;
+  setSelectedContentType: Function;
 }
 
 function ContentTrail(props: IProps) {
@@ -23,10 +25,12 @@ function ContentTrail(props: IProps) {
     setSelectedContentData,
     selectedContentDataIndex,
     setSelectedContentDataIndex,
+    setSelectedContentType,
   } = props;
 
   const onPressUpKey = () => {
     props.setFocusOnFeature();
+    setSelectedContentType(ContentType.FEATURE);
   };
 
   const onPressDownKey = () => {};

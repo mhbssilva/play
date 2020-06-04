@@ -5,15 +5,23 @@ import Button from "../button/button";
 import PlayIcon from "../icon/play";
 import "./content-wrapper-banner.scss";
 import ActionHelper from "../../shared/helpers/action";
+import ContentType from "../../shared/enums/content-type";
 
 interface IProps {
   contentData: IContentData;
   contentDataIndex: number;
+  setFocusOnTrail: Function;
   setFocusOnNavigation: Function;
+  setSelectedContentType: Function;
 }
 
 const ContentWrapperBanner = (props: IProps) => {
-  const { contentData, contentDataIndex } = props;
+  const {
+    contentData,
+    contentDataIndex,
+    setSelectedContentType,
+    setFocusOnTrail,
+  } = props;
 
   const getContentIndex = () => {
     return contentData.type === "feature" ? 0 : contentDataIndex;
@@ -51,7 +59,8 @@ const ContentWrapperBanner = (props: IProps) => {
 
   const onPressUpKey = () => {};
   const onPressDownKey = () => {
-    ActionHelper.setFocus("trail-content-card-0");
+    setSelectedContentType(ContentType.TRAIL);
+    setFocusOnTrail();
   };
 
   const playBtnOnKeyPress = (e: KeyboardEvent) => {

@@ -11,12 +11,12 @@ import "./left-navigation.scss";
 
 interface IProps {
   selectedItem: number;
-  setFocusOnFeature: Function;
   setSelectedItem: Function;
+  setFocusOnContentWrapper: Function;
 }
 
 const LeftNavigation = (props: IProps) => {
-  const { selectedItem, setFocusOnFeature, setSelectedItem } = props;
+  const { selectedItem, setSelectedItem, setFocusOnContentWrapper } = props;
 
   const menuItems = [
     {
@@ -57,7 +57,7 @@ const LeftNavigation = (props: IProps) => {
 
   const onPressLeftKey = () => {};
   const onPressRightKey = () => {
-    setFocusOnFeature();
+    setFocusOnContentWrapper();
   };
 
   const onKeyPress = (e: KeyboardEvent) => {
