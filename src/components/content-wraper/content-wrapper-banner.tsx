@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import KeyHelper from "../../shared/helpers/key-helper";
 import IContentData from "../../shared/interfaces/content-data";
 import Button from "../button/button";
@@ -16,6 +16,8 @@ interface IProps {
 }
 
 const ContentWrapperBanner = (props: IProps) => {
+  const [isLoadingContent, setIsLoadingContent] = useState(true);
+
   const {
     contentData,
     contentDataIndex,
@@ -23,12 +25,22 @@ const ContentWrapperBanner = (props: IProps) => {
     setFocusOnTrail,
   } = props;
 
+  useEffect(() => {
+    setIsLoadingContent(true);
+
+    setTimeout(() => {
+      setIsLoadingContent(false);
+    }, 500);
+  }, [contentDataIndex]);
+
   const getContentIndex = () => {
     return contentData.type === "feature" ? 0 : contentDataIndex;
   };
 
   const getBackgroundImage = () => {
-    return contentData.data[getContentIndex()].backgroundImage;
+    return isLoadingContent
+      ? ""
+      : contentData.data[getContentIndex()].backgroundImage;
   };
 
   const getProgramName = () => {
@@ -85,6 +97,7 @@ const ContentWrapperBanner = (props: IProps) => {
     <section
       className={`content-wrapper-banner ${contentData.type}`}
       style={{
+        opacity: isLoadingContent ? 0 : 1,
         backgroundImage: getBackgroundImage()
           ? `linear-gradient(to right, rgba(0,0,0,.8),rgba(0,0,0,0)), linear-gradient( rgba(0,0,0,0),rgba(0,0,0,1)), url(${getBackgroundImage()})`
           : "",

@@ -62,13 +62,15 @@ function ContentTrail(props: IProps) {
     });
   };
 
-  const slideToContentCard = (elementId: string) => {
-    const componentElement = document.getElementById(elementId)!;
-    const width = componentElement.offsetWidth;
-    const leftPosition = componentElement.offsetLeft;
-    const parentElement = componentElement.parentElement;
+  const getTrailWrapperLeftMargin = () => {
+    if (selectedContentDataIndex === 0) {
+      return 0;
+    }
 
-    parentElement?.scrollTo({ left: leftPosition - width / 1.8 });
+    const firstCardComponent = document.getElementById("trail-content-card-0");
+    const cardWidth = firstCardComponent!.offsetWidth;
+
+    return -selectedContentDataIndex * (cardWidth + 32);
   };
 
   return (
@@ -78,7 +80,10 @@ function ContentTrail(props: IProps) {
       }`}
     >
       <h3>{contentData.trailName}</h3>
-      <div className="content-trail-items-wrapper">
+      <div
+        className="content-trail-items-wrapper"
+        style={{ marginLeft: getTrailWrapperLeftMargin() }}
+      >
         {contentData.data.map(
           (contentItemData: IContentItemData, index: number) => {
             return (
@@ -89,7 +94,6 @@ function ContentTrail(props: IProps) {
                 onFocus={() => {
                   setSelectedContentData(contentData);
                   setSelectedContentDataIndex(index);
-                  slideToContentCard(`trail-content-card-${index}`);
                 }}
                 contentItemData={contentItemData}
               />
