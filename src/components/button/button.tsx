@@ -1,7 +1,7 @@
 import React from "react";
 import "./button.scss";
 
-interface IProps {
+export interface IProps {
   className?: string;
   icon?: any;
   id?: string;
